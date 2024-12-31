@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Newsfeed</title>
+  <style>
+    /* Basic styling for layout */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .project-name {
+        font-size: 24px;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-info span {
+        margin-right: 10px;
+    }
+
+    .logout-button {
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .logout-button:hover {
+        background-color: #d32f2f;
+    }
+
+    .content {
+        padding: 20px;
+        flex: 1;
+    }
+
+    footer {
+        background-color: #f1f1f1;
+        text-align: center;
+        padding: 10px;
+    }
+    .user-button {
+    padding: 5px 10px;
+    background-color: #008CBA; /* Blue color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.user-button:hover {
+    background-color: #005f73; /* Darker blue on hover */
+}
+
+  </style>
+</head>
+<body>
+<!-- Header Section: Project name on the left and Username/Logout button on the right -->
+<header>
+  <div class="project-name">School Bell Ring</div>
+  <div class="user-info">
+    <form action="/profileInfo" method="get" style="text-decoration: none;">
+      <button class="user-button">
+        <span th:text="${userName}">User</span>
+      </button>
+    </form>
+
+    <button class="logout-button">Logout</button>
+  </div>
+</header>
+
+<!-- Main Content Section: Newsfeed and posts -->
+<div class="content">
+  <h1>Welcome to the Newsfeed, <span th:text="${userName}">User</span>!</h1> <!-- Welcome message with dynamic name -->
+  <p>Role: <span th:text="${userRole}">User Role</span></p> <!-- Display dynamic role -->
+  <p>Address: <span th:text="${userAddress}">User Address</span></p> <!-- Display dynamic address -->
+
+
+  <div>
+    <h2>Latest Posts</h2>
+<!--    &lt;!&ndash; Example post &ndash;&gt;-->
+<!--    <div th:each="post : ${posts}">-->
+<!--      <h3 th:text="${post.title}">Post Title</h3>-->
+<!--      <p th:text="${post.content}">Post content here</p>-->
+<!--      <p><i th:text="${post.timestamp}">Timestamp</i></p>-->
+<!--    </div>-->
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+  <p>Newsfeed page footer content here.</p>
+</footer>
+</body>
+</html>

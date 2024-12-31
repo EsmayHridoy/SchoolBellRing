@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .project-name {
+        font-size: 24px;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .nav-button {
+        padding: 10px 15px;
+        background-color: #fff;
+        color: #4CAF50;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .nav-button:hover {
+        background-color: #f1f1f1;
+    }
+
+    .container {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .profile-section {
+        flex: 3;
+        margin-right: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .friend-list-section {
+        flex: 2;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    .profile-info {
+        margin-bottom: 20px;
+    }
+
+    .edit-button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .edit-button:hover {
+        background-color: #45a049;
+    }
+
+    .friend-list ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .friend-list ul li {
+        margin: 10px 0;
+    }
+
+    .post {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="project-name">School Bell Ring</div>
+  <div class="nav-buttons">
+    <a th:href="@{/newsfeed}">
+      <button class="nav-button">Newsfeed</button>
+    </a>
+    <button class="nav-button" th:onclick="'location.href=\'' + @{/logout} + '\''">Logout</button>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <h2>User Profile</h2>
+    <div class="profile-info">
+      <p><strong>Name:</strong> <span th:text="${userName}">John Doe</span></p>
+      <p><strong>Email:</strong> <span th:text="${userEmail}">johndoe@example.com</span></p>
+      <p><strong>Address:</strong> <span th:text="${userAddress}">123 Main Street</span></p>
+      <p><strong>Role:</strong> <span th:text="${userRole}">User</span></p>
+    </div>
+    <button class="edit-button">Edit Profile</button>
+    <!-- Posted Posts Section -->
+    <div class="user-posts">
+      <h2>Your Posts</h2>
+      <div class="post" th:each="post : ${userPosts}">
+        <h3 th:text="${post.headline}">Post Headline</h3>
+        <p th:text="${post.content}">Post Content</p>
+        <small><i th:text="${post.date}">Post Date</i></small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Friend List Section -->
+  <div class="friend-list-section">
+    <h2>Friend List</h2>
+    <div class="friend-list">
+      <ul>
+        <li th:each="friend : ${friends}">
+          <span th:text="${friend.name}">Friend Name</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
